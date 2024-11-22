@@ -178,7 +178,7 @@
 public logo
 public print
 public deltaTime
-
+public bandera
 
 
 
@@ -587,4 +587,98 @@ logo proc
 	    ret
 logo endp
 
+bandera proc
+   push ax
+   push bx
+   push cx
+
+   xor dx,dx
+
+   mov dh,12
+   mov dl,26
+   mov si,0
+   bandera1:
+    inc dh ;aumenta posicion en fila
+    mov dl,20 ;coloca cursor en columna 0
+    mov ah, 02h 
+    int 10h
+
+    mov bl, 0Bh
+    mov cx, 36
+    mov al, 0DBh ;ascii char: █
+    mov ah,09h   
+    int 10h
+
+    inc dl
+    mov ah, 02h  ;Incrementa la columna y mueve el cursor
+    int 10h
+
+    cmp dh, 14
+   jne bandera1
+
+   bandera2:
+    inc dh ;aumenta posicion en fila
+    mov dl,20 ;coloca cursor en columna 0
+    mov ah, 02h 
+    int 10h
+
+    mov bl, 0Fh
+    mov cx, 36
+    mov al, 0DBh ;ascii char: █
+    mov ah,09h   
+    int 10h
+
+    inc dl
+    mov ah, 02h  ;Incrementa la columna y mueve el cursor
+    int 10h
+
+    cmp dh, 18
+   jne bandera2
+
+   bandera3:
+    inc dh 
+    mov dl,20 
+    mov ah, 02h 
+    int 10h
+
+    mov bl, 0Bh
+    mov cx, 36
+    mov al, 0DBh ;ascii char: █
+    mov ah,09h   
+    int 10h
+
+    inc dl
+    mov ah, 02h  ;Incrementa la columna y mueve el cursor
+    int 10h
+
+    cmp dh, 20
+   jne bandera3  
+   
+   mov dh,15
+   mov dl,36
+   bandera4:
+      inc dh
+      mov dl,36
+      mov ah,02h
+      int 10h
+
+      mov bl,0Eh
+      mov cx,4
+      mov al,0DBh
+      mov ah,09h
+      int 10h
+
+      inc dl
+      mov ah,02h
+      int 10h
+
+      cmp dh,17
+   jne bandera4
+
+
+   pop cx
+   pop bx
+   pop ax
+   ret 
+bandera endp
 	end

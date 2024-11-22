@@ -32,7 +32,7 @@
 extrn logo:proc
 extrn print:proc
 extrn deltaTime:proc
-
+extrn bandera:proc
 ;Imprime en pantalla, recibe por dx
 
 ;-------------------------------------------------
@@ -626,7 +626,9 @@ start:
     lea dx, inst_final
     call print
 
-    ;ACA SANTI!!! (BORRALO)
+    call bandera
+
+    
 
     mov ah, 08h
     int 21h
